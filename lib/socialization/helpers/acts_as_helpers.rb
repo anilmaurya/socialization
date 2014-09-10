@@ -34,6 +34,16 @@ module Socialization
       def acts_as_mentionable(opts = {})
         include Socialization::Mentionable
       end
+      
+      # Make the current class a {Socialization::CircleOwner}
+      def acts_as_circle_owner(opts = {})
+        include Socialization::CircleOwner
+      end
+      
+      # Make the current class a {Socialization::CircleMember}
+      def acts_as_circle_member(opts = {})
+        include Socialization::CircleMember
+      end
     end
   end
 end
