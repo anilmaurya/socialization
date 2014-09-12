@@ -9,6 +9,11 @@ module Socialization
         def create_circle!(circle_name)
           self.circles.create(name: circle_name)
         end
+
+        def remove_circle!(circle_name)
+          circle = self.circles.where(name: circle_name).first
+          circle.destroy if circle
+        end
       end
 
     end

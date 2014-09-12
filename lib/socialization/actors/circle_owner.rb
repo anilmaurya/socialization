@@ -24,7 +24,12 @@ module Socialization
 
       # create a new Circle
       def create_circle!(options={})
-        raise Socialization::ArgumentError, "circle name not be empty! Use case create_circle(name: 'test_circle')" unless options[:name].present?
+        raise Socialization::ArgumentError, "circle name not be empty! Use case create_circle({name: 'test_circle'})" unless options[:name].present?
+        Socialization.circle_owner_model.create_circle!(options[:name])
+      end
+      
+      def remove_circle!(options={})
+        raise Socialization::ArgumentError, "circle name not be empty! Use case remove_circle({name: 'test_circle'})" unless options[:name].present?
         Socialization.circle_owner_model.create_circle!(options[:name])
       end
     end
