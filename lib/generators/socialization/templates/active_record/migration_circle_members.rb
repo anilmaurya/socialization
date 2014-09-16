@@ -1,4 +1,4 @@
-class CreateFollows < ActiveRecord::Migration
+class CreateCircleMembers < ActiveRecord::Migration
   def change
     create_table :circle_members do |t|
       t.integer  :circle_id

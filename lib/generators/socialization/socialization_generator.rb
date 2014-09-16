@@ -26,6 +26,7 @@ class SocializationGenerator < Rails::Generators::Base
     copy_file "#{options[:store]}/model_follow.rb",  'app/models/follow.rb'
     copy_file "#{options[:store]}/model_like.rb",    'app/models/like.rb'
     copy_file "#{options[:store]}/model_mention.rb", 'app/models/mention.rb'
+    copy_file "#{options[:store]}/model_circle.rb",  'app/models/circle.rb'
 
     if options[:store] == 'active_record'
       migration_template "#{options[:store]}/migration_follows.rb",  'db/migrate/create_follows.rb'
@@ -33,6 +34,10 @@ class SocializationGenerator < Rails::Generators::Base
       migration_template "#{options[:store]}/migration_likes.rb",    'db/migrate/create_likes.rb'
       sleep 1 # wait a second to have a unique migration timestamp
       migration_template "#{options[:store]}/migration_mentions.rb", 'db/migrate/create_mentions.rb'
+      sleep 1 # wait a second to have a unique migration timestamp
+      migration_template "#{options[:store]}/migration_circle_members.rb", 'db/migrate/create_circle_members.rb'
+      sleep 1 # wait a second to have a unique migration timestamp
+      migration_template "#{options[:store]}/migration_circles", 'db/migrate/create_circles.rb'
     end
   end
 end
