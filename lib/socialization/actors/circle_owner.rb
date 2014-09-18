@@ -32,6 +32,11 @@ module Socialization
         raise Socialization::ArgumentError, "circle name not be empty! Use case remove_circle({name: 'test_circle'})" unless options[:name].present?
         Socialization.circle_owner_model.create_circle!(options[:name])
       end
+
+      def circles
+        Socialization.circle_owner_model.circles
+      end
+
     end
 
   end
