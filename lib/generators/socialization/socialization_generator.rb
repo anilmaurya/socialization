@@ -27,6 +27,7 @@ class SocializationGenerator < Rails::Generators::Base
     copy_file "#{options[:store]}/model_like.rb",    'app/models/like.rb'
     copy_file "#{options[:store]}/model_mention.rb", 'app/models/mention.rb'
     copy_file "#{options[:store]}/model_circle.rb",  'app/models/circle.rb'
+    copy_file "#{options[:store]}/model_circle_member.rb",  'app/models/circle_member.rb'
 
     if options[:store] == 'active_record'
       migration_template "#{options[:store]}/migration_follows.rb",  'db/migrate/create_follows.rb'

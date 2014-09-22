@@ -22,6 +22,28 @@ module Socialization
       end
       alias circle_member? is_circle_member?
 
+
+      def add_circle_member!(options={})
+        raise Socialization::ArgumentError, "circle id and member id cannot be empty! Use case add_circle_member({circle_id: n, member_id: m})" unless options[:circle_id].present? || options[:member_id].present?
+        if options[:circle_id].is_a?(Array)
+          options[:circle_id].each do |circle_id|
+            Socialization.circle_member_model.add_member!(circle_id, options[:member_id])
+          end
+        else
+          Socialization.circle_member_model.add_member!(options[:circle_id], options[:member_id])
+        end
+      end
+
+      def remove_circle_member!(options={})
+        raise Socialization::ArgumentError, "circle id and member id cannot be empty! Use case remove_circle_member({circle_id: n, member_id: m})" unless options[:circle_id].present? || options[:member_id].present?
+        Socialization.circle_member_model.remove_member!(options[:circle_id], options[:member_id])
+      end
+
+      def member_circle_ids(options={})
+        raise Socialization::ArgumentError, "member id cannot be empty! Use case circle_ids({member_id: m})" unless options[:member_id].present?
+        Socialization.circle_member_model.circle_ids(options[:member_id])
+      end
+
     end
 
   end
