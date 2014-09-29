@@ -42,6 +42,13 @@ module Socialization
         Socialization.circle_member_model.member_ids(options[:circle_id])
       end
 
+      def in_circle_ids
+        Socialization.circle_member_model.where(circle_member_id: self.id).collect(&:circle_id).uniq
+      end
+
+      def have_user_in_circle_ids
+        Socialization.circle_model.where(id: self.in_circle_ids).collect(&:circle_owner_id).uniq
+      end
     end
 
   end
