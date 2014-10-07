@@ -23,9 +23,9 @@ module Socialization
       alias circle_owner? is_circle_owner?
 
       # create a new Circle
-      def create_circle!(options={})
+      def create_circle(options={})
         raise Socialization::ArgumentError, "circle name not be empty! Use case create_circle({name: 'test_circle'})" unless options[:name].present?
-        Socialization.circle_model.create_circle!(options[:name], self.id)
+        Socialization.circle_model.create_circle(options[:name], self.id)
       end
       
       def remove_circle!(options={})
