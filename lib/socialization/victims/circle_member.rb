@@ -41,7 +41,8 @@ module Socialization
 
       def member_circle_ids(options={})
         raise Socialization::ArgumentError, "member id cannot be empty! Use case circle_ids({member_id: m})" unless options[:member_id].present?
-        Socialization.circle_member_model.circle_ids(options[:member_id])
+        self_circle_ids = self.circles.collect(&:id)
+        Socialization.circle_member_model.circle_ids(options[:member_id], self_circle_ids)
       end
 
     end

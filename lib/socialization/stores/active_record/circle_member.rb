@@ -22,8 +22,8 @@ module Socialization
           self.where(circle_id: circle_id).collect(&:circle_member_id)
         end
 
-        def circle_ids(member_id)
-          self.where(circle_member_id: member_id).collect(&:circle_id)
+        def circle_ids(member_id, self_circle_ids)
+          self.where(circle_member_id: member_id, circle_id: self_circle_ids).collect(&:circle_id)
         end
 
       end
