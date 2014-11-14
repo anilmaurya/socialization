@@ -1,3 +1,5 @@
+### This Gem is forked from  cmer/socialization and added Google Circle feature
+
 # Socialization
 
 Socialization is a Ruby Gem that allows any ActiveRecord model to `Follow`, `Like` and/or `Mention` any other model. ActiveRecord or Redis can be used as a data store.
@@ -82,6 +84,22 @@ Allow a model to mention:
       ...
     end
 
+Allow a model to circle owner:
+    class User < ActiveRecord::Base
+      ...
+      acts_as_circle_owner
+      ...
+    end
+
+Allow a model to circle member:
+    class User < ActiveRecord::Base
+      ...
+      acts_as_circle_member
+      ...
+    end
+
+
+    
 Or a more complex case where users can like and follow each other:
 
     class User < ActiveRecord::Base
@@ -91,6 +109,8 @@ Or a more complex case where users can like and follow each other:
       acts_as_liker
       acts_as_likeable
       acts_as_mentionable
+      acts_as_circle_member
+      acts_as_circle_owner
       ...
     end
 
@@ -212,6 +232,42 @@ All mentioners
 ***
 
 
+### acts_as_circle_owner Methods
+
+Create new circle
+    
+    user.create_circle({name: 'test_circle'})
+
+Delete circle
+
+    user.remove_circle!({name: 'test_circle'})
+
+List circles
+    
+    user.circles
+
+Get circle member ids for specific circle
+    
+    user.circle_member_ids({circle_id: _id})
+
+Get 'have you in circle' user's id
+
+    user.have_user_in_circle_ids
+
+***
+
+### acts_as_circle_member Methods
+
+Add circle members
+
+    user.add_circle_member!({circle_id: [Array of circle_ids], member_id: user_id_to_be_added})
+
+Remove circle member
+
+    user.remove_circle_member!({circle_id: [Array of circle_ids], member_id: user_id_to_be_added})
+
+***
+    
 ## Documentation
 
 You can find the compiled YARD documentation at http://rubydoc.info/github/cmer/socialization/frames. Documentation for methods inside `include` blocks is not currently generated although it exists in the code. A custom YARD filter needs to be written for YARD to pick those up.
