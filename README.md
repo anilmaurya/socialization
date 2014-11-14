@@ -85,16 +85,19 @@ Allow a model to mention:
     end
 
 Allow a model to circle owner:
+
     class User < ActiveRecord::Base
       ...
       acts_as_circle_owner
       ...
     end
+   
 
 Allow a model to circle member:
-    class User < ActiveRecord::Base
+
+     class User < ActiveRecord::Base
       ...
-      acts_as_circle_member
+     acts_as_circle_member
       ...
     end
 
